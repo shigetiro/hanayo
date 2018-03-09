@@ -1,7 +1,6 @@
 package main
 
 import (
-	gocontext "context"
 	"crypto/md5"
 	"encoding/json"
 	"fmt"
@@ -9,7 +8,6 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
-	"time"
 
 	"bytes"
 
@@ -100,8 +98,7 @@ func discordFinish(c *gin.Context) {
 		return
 	}
 
-	reqCtx, _ := gocontext.WithTimeout(gocontext.Background(), time.Second*20)
-	tok, err := getDiscord().Exchange(reqCtx, c.Query("code"))
+	tok, err := getDiscord().Exchange(nil, c.Query("code"))
 	if err != nil {
 		c.Error(err)
 		addMessage(c, errorMessage{T(c, "An error occurred.")})
@@ -167,6 +164,7 @@ func mustCSRFGenerate(u int) string {
 }
 
 var blogRedirectMap = map[string]string{
+	/* Unused.. for now
 	"/posts/moving-to-a-new-server":                                              "https://blog.ripple.moe/moving-to-a-new-server-11155949edca",
 	"/posts/ripple-qa-3":                                                         "https://blog.ripple.moe/ripple-q-a-3-28c9851f42b3",
 	"/posts/hanayo-is-now-the-ripple-website":                                    "https://blog.ripple.moe/hanayo-is-now-the-ripple-website-3bcfaab60c4f",
@@ -184,13 +182,14 @@ var blogRedirectMap = map[string]string{
 	"/posts/changes-in-administration":                                           "https://blog.ripple.moe/changes-in-administration-983114dc6332",
 	"/posts/its-dangerous-to-go-alone":                                           "https://blog.ripple.moe/its-dangerous-to-go-alone-ef7fa98f2975",
 	"/posts/we-got-a-blog":                                                       "https://blog.ripple.moe/we-got-a-blog-81a0af62b410",
+	*/
 }
 
 func blogRedirect(c *gin.Context) {
 	a := c.Param("url")
 	red := blogRedirectMap[a]
 	if red == "" {
-		red = "https://blog.ripple.moe"
+		red = "https://blog.akatsuki.pw"
 	}
 	c.Redirect(301, red)
 }

@@ -238,7 +238,6 @@ var funcMap = template.FuncMap{
 				[]byte(
 					m[strings.Index(m, "\n---\n")+5:],
 				),
-				blackfriday.WithExtensions(blackfriday.CommonExtensions),
 			),
 		)
 	},
@@ -344,6 +343,7 @@ var funcMap = template.FuncMap{
 	// servicePrefix gets the prefix of a service, like github.
 	"servicePrefix": func(s string) string { return servicePrefixes[s] },
 	// randomLogoColour picks a "random" colour for ripple's logo.
+	// Not even used anymore
 	"randomLogoColour": func() string {
 		if rand.Int()%4 == 0 {
 			return logoColours[rand.Int()%len(logoColours)]
@@ -490,6 +490,14 @@ var funcMap = template.FuncMap{
 	},
 	"privilegesToString": func(privs float64) string {
 		return common.Privileges(privs).String()
+	},
+	"shouldShowJP": func(c *gin.Context, cont context) bool {
+		for _, x := range getLang(c) {
+			if x == "ja" {
+				return cont.User.ID%5 == 4
+			}
+		}
+		return false
 	},
 	"htmlescaper": template.HTMLEscaper,
 }

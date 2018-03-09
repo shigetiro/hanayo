@@ -1,7 +1,7 @@
 {{/*###
-Handler=/leaderboard
+Handler=/leaderboard2
 TitleBar=Leaderboard
-KyutGrill=leaderboard.jpg
+KyutGrill=leaderboard2.jpg
 */}}
 {{ define "tpl" }}
 <div class="ui container">
@@ -16,7 +16,7 @@ KyutGrill=leaderboard.jpg
 	</script>
 	<div class="ui four item menu" id="mode-menu">
 		{{ range $k, $v := modes }}
-			<a class="{{ favMode $favMode $k }}item" data-mode="{{ $k }}" href="/leaderboard?mode={{ $k }}">{{ $v }}</a>
+			<a class="{{ favMode $favMode $k }}item" data-mode="{{ $k }}" href="/leaderboard2?mode={{ $k }}">{{ $v }}</a>
 		{{ end }}
 	</div>
 	<div class="ui twelve item stackable menu">

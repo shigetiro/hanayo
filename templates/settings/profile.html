@@ -15,7 +15,7 @@ MinPrivileges=2
 					{{ $d := .Get "users/self/settings" }}
 					<h3 class="ui header">{{ .T "General" }}</h3>
 					<div class="field">
-						<label><a href="https://support.ripple.moe">{{ .T "Username" }}</a></label>
+						<label><a href="/help">{{ .T "Username" }}</a></label>
 						<input type="text" value="{{ .Context.User.Username }}" disabled>
 					</div>
 					<div class="field">
@@ -71,12 +71,6 @@ MinPrivileges=2
 								</div>
 							</div>
 						{{ end }}
-					</div>
-					<h3 class="ui header">{{ .T "Preferences" }}</h3>
-					{{ $ds := band .ClientFlags 1 }}
-					<div class="ui checkbox">
-						<input type="checkbox" {{ if $ds }}checked{{ end }} id="dark-site">
-						<label>{{ .T "Dark site" }}</label>
 					</div>
 					<div class="ui divider"></div>
 					<div style="text-align: right">
