@@ -114,16 +114,16 @@ func main() {
 	var configDefaults = map[*string]string{
 		&config.ListenTo:         ":45221",
 		&config.CookieSecret:     rs.String(46),
-		&config.AvatarURL:        "https://a.osu.akatsuki.pw",
-		&config.BaseURL:          "https://osu.akatsuki.pw",
-		&config.BanchoAPI:        "https://c.osu.akatsuki.pw",
+		&config.AvatarURL:        "https://a.vipsu.ml",
+		&config.BaseURL:          "https://vipsu.ml",
+		&config.BanchoAPI:        "https://c.vipsu.ml",
 		&config.CheesegullAPI:    "https://storage.ripple.moe/api",
 		&config.API:              "http://localhost:40001/api/v1/",
 		&config.APISecret:        "Potato",
 		&config.IP_API:           "https://ip.zxq.co",
 		&config.DiscordServer:    "#",
 		&config.MainRippleFolder: "/home/osu/server",
-		&config.MailgunFrom:      `"Akatsuki" <noreply@akatsuki.pw>`,
+		&config.MailgunFrom:      `"vipsu.ml" <noreply@vipsu.ml>`,
 	}
 	for key, value := range configDefaults {
 		if *key == "" {
@@ -323,5 +323,5 @@ func generateEngine() *gin.Engine {
 }
 
 const alwaysRespondText = `Ooops! Looks like something went really wrong while trying to process your request.
-Perhaps report this to a Akatsuki developer?
+Perhaps report this to a Vipsu developer?
 Retrying doing again what you were trying to do might work, too.`
